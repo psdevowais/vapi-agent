@@ -1,0 +1,32 @@
+tunnel: a6f18408-90b1-4560-8748-0264e0717192
+credentials-file: /var/www/vapi-agent/.cloudflared/a6f18408-90b1-4560-8748-0264e0717192.json
+
+ingress:
+  - hostname: agent.propstarportal.com
+    path: /ws
+    service: http://localhost:8000
+    originRequest:
+      http2Origin: false
+      noTLSVerify: true
+      connectTimeout: 30s
+      tlsTimeout: 30s
+      keepAliveTimeout: 30s
+      keepAliveConnections: 100
+  - hostname: agent.propstarportal.com
+    path: /api
+    service: http://localhost:8000
+    originRequest:
+      http2Origin: false
+      noTLSVerify: true
+      connectTimeout: 30s
+      tlsTimeout: 30s
+  - hostname: agent.propstarportal.com
+    service: http://localhost:3000
+    originRequest:
+      http2Origin: false
+      noTLSVerify: true
+      connectTimeout: 30s
+      tlsTimeout: 30s
+  - service: http_status:404
+
+protocol: auto
